@@ -22,6 +22,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField(
+            type = "String",
+            name = "api_key",
+            value = "\"fca_live_2MuR4GVbvbhNOi3r17qaljzQC5m994YeHoKul1jc\""
+        )
     }
 
     buildTypes {
@@ -42,6 +48,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 //    composeOptions {
 //        kotlinCompilerExtensionVersion = "1.5.8"

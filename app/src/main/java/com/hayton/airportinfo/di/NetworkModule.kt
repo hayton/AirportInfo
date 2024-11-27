@@ -2,6 +2,7 @@ package com.hayton.airportinfo.di
 
 import android.util.Log
 import com.google.gson.Gson
+import com.hayton.airportinfo.BuildConfig
 import com.hayton.airportinfo.currency.api.CurrencyApi
 import com.hayton.airportinfo.currency.api.CurrencyApiImpl
 import com.hayton.airportinfo.currency.repository.CurrencyRepository
@@ -57,7 +58,7 @@ object NetworkModule {
             .addInterceptor { chain ->
                 val originalRequest = chain.request()
                 val newRequest = originalRequest.newBuilder()
-                    .header("apiKey", "fca_live_2MuR4GVbvbhNOi3r17qaljzQC5m994YeHoKul1jc")
+                    .header("apiKey", BuildConfig.api_key)
                     .build()
                 chain.proceed(newRequest)
             }
