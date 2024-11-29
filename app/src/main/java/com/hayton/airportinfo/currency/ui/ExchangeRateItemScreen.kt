@@ -117,6 +117,9 @@ fun ExchangeRateItemScreen(
                 ),
                 singleLine = true,
                 onValueChange = { newValue ->
+                    if (!newValue.text.matches(Regex("^[0-9.]*\$"))) {
+                        return@BasicTextField
+                    }
                     val dotCount = newValue.text.count { it == '.' }
                     if (dotCount <= 1) {
                         val decimalLength =
