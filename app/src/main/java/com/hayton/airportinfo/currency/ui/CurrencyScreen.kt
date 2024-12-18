@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -39,6 +40,11 @@ fun CurrencyScreen(
     val isLoading by viewModel.isLoadingStateFlow.collectAsState()
     var isItemOnFocused by remember { mutableStateOf(false) }
     var focusedIndex by remember { mutableIntStateOf(-1) }
+
+    LaunchedEffect(Unit) {
+        viewModel.getCurrencies()
+    }
+
 
     Box(
         modifier = Modifier

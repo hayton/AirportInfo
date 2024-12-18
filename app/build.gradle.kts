@@ -60,6 +60,12 @@ android {
             )
         }
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -93,6 +99,13 @@ dependencies {
     implementation(libs.coil.okhttp)
 
     testImplementation(libs.junit)
+//    testImplementation(libs.mockito.core)
+//    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.coroutine.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.hilt.android.testing)
+    testImplementation(libs.mockk)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

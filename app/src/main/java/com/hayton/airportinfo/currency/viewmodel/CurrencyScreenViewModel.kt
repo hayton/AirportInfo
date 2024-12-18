@@ -35,11 +35,7 @@ class CurrencyScreenViewModel @Inject constructor(
     private val _isLoadingStateFlow = MutableStateFlow(true)
     val isLoadingStateFlow = _isLoadingStateFlow.asStateFlow()
 
-    var retryCount = 0
-
-    init {
-        getCurrencies()
-    }
+    private var retryCount = 0
 
     fun clearFocusedItem(focusedIndex: Int) {
         _exchangeRateItemObjectList.value =
@@ -95,7 +91,7 @@ class CurrencyScreenViewModel @Inject constructor(
         val baseCurrency = baseItem.symbol
         val mathExpression = baseItem.rate
 
-        Log.d(TAG, "is valid= ${mathExpression.matches(regex)}")
+//        Log.d(TAG, "is valid= ${mathExpression.matches(regex)}")
         if (mathExpression.matches(regex)) {
             val result = evaluateExpression(mathExpression)
             if (result is Double) {
@@ -123,7 +119,7 @@ class CurrencyScreenViewModel @Inject constructor(
         }
     }
 
-    private fun getCurrencies(
+    fun getCurrencies(
         currencies: List<String> = listOf("USD", "EUR", "SGD", "JPY", "GBP", "CHF", "HKD")
     ) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -143,7 +139,7 @@ class CurrencyScreenViewModel @Inject constructor(
 
     private fun getExchangeRate(
         baseCurrency: String,
-        currencies: List<String> = listOf("USD", "EUR", "SGD", "JPY", "GBP", "CHF", "HKD")
+        currencies: List<String> = listOf("USD", "EUR", "SGD")
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.getExchangeRate(baseCurrency, currencies)
